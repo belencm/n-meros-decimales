@@ -2,702 +2,630 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudio Pro - Academia de Matemáticas</title>
+    <title>Estudio Pro - Master en Sistemas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Tipografía clara y moderna */
-        body {
-            font-family: 'Calibri', 'Segoe UI', 'Candara', 'Open Sans', sans-serif;
-            background-color: #f1f5f9;
-            color: #1e293b;
-            overflow-x: hidden;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; overflow-x: hidden; }
+        .math-font { font-family: 'Fira Code', monospace; }
+        
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
 
-        /* Pizarra Verde Académica */
-        .chalkboard {
-            background-color: #1a3a2a; 
-            border: 18px solid #4e342e; 
-            border-radius: 1rem;
-            box-shadow: inset 0 0 100px rgba(0,0,0,0.8), 0 25px 50px rgba(0,0,0,0.4);
-            position: relative;
-            color: #ffffff;
-            background-image: url('https://www.transparenttextures.com/patterns/black-chalkboard.png');
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 620px; 
-            padding: 35px;
-        }
+        .sqrt { display: inline-flex; align-items: flex-start; vertical-align: middle; }
+        .sqrt-symbol { font-family: 'Inter', sans-serif; font-size: 1.2em; line-height: 1; margin-right: 1px; font-weight: 300; }
+        .sqrt-content { padding-top: 2px; line-height: 1; }
 
-        .minimal-card {
-            background: #ffffff;
-            border-radius: 1.5rem;
-            border: 2px solid #e2e8f0;
-            transition: all 0.3s ease;
-            position: relative;
+        .mini-system { 
+            display: inline-flex; 
+            align-items: center; 
+            background: rgba(15, 23, 42, 0.4); 
+            padding: 0.5rem 1rem; 
+            border-radius: 14px; 
+            margin: 8px 0;
+            border: 1px solid rgba(214, 188, 250, 0.3);
+            max-width: 100%;
         }
-
-        .minimal-card:hover {
-            border-color: #6366f1;
-            transform: translateY(-4px);
-        }
-
-        .btn-action {
-            border-radius: 1rem;
-            font-weight: 800;
-            transition: all 0.2s;
+        .mini-bracket { 
+            color: #D6BCFA; 
+            font-size: 2.2rem; 
+            font-weight: 300;
+            line-height: 1; 
+            margin-right: 0.5rem; 
+            user-select: none;
             display: flex;
             align-items: center;
-            justify-content: center;
-            border: 3px solid #1e293b;
-            background: white;
-            box-shadow: 5px 5px 0px 0px #1e293b;
-            text-transform: uppercase;
         }
-
-        .btn-action:active {
-            transform: translate(2px, 2px);
-            box-shadow: 0px 0px 0px 0px #1e293b;
-        }
-
-        .btn-primary { background: #6366f1; color: white; border-color: #1e293b; }
-        .btn-danger { background: #f43f5e; color: white; border-color: #1e293b; }
-        .btn-success { background: #10b981; color: white; border-color: #1e293b; }
-
-        .progress-container {
-            height: 16px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 8px;
-            overflow: hidden;
-            width: 180px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: #facc15;
-            transition: width 0.6s ease;
-        }
-
-        .fraction {
-            display: inline-flex;
-            flex-direction: column;
-            vertical-align: middle;
-            text-align: center;
-            line-height: 1.1;
-        }
-        .fraction .top { border-bottom: 5px solid white; padding-bottom: 6px; margin-bottom: 6px; }
-        .fraction .bottom { padding-top: 6px; }
-
-        .problem-text {
-            width: 100%;
-            max-width: 800px;
-            text-align: center;
-            line-height: 1.6;
-            font-size: 1.3rem; 
-            font-weight: 500;
-            color: rgba(255,255,255,0.95);
-        }
-
-        .math-big {
-            font-size: 3.5rem; 
-            font-weight: 800;
-            letter-spacing: -1px;
+        .mini-equations { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 0.2rem;
+            font-size: 0.85rem; 
+            text-align: left;
             white-space: nowrap;
         }
 
-        /* Diploma */
-        .diploma-bg {
-            background: #fffdf5;
-            border: 12px double #92400e;
-            padding: 60px;
+        .blackboard {
+            background-color: #0f172a;
+            background-image: radial-gradient(circle at 1.5px 1.5px, rgba(51, 65, 85, 0.3) 1px, transparent 0);
+            background-size: 20px 20px;
+            color: #e2e8f0;
+            border: 10px solid #334155;
+            box-shadow: inset 0 8px 32px rgba(0,0,0,0.8);
+            display: flex;
+            align-items: stretch;
+            min-height: 580px; 
             position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            border-radius: 4px;
         }
-        .diploma-seal {
-            width: 110px;
-            height: 110px;
-            background: #fbbf24;
-            border: 4px solid #92400e;
-            border-radius: 50%;
+
+        .system-display-area {
+            flex: 0 0 35%; 
+            padding: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: absolute;
-            bottom: 40px;
-            right: 40px;
-            font-weight: 900;
-            color: #92400e;
-            transform: rotate(-10deg);
+            border-right: 2px solid rgba(51, 65, 85, 0.5);
+            background: rgba(0,0,0,0.1);
         }
 
-        .hidden-view { display: none !important; }
-        
-        .modal-overlay {
-            position: fixed;
+        .log-area {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            max-height: 580px;
+        }
+
+        .system-container {
+            display: inline-flex;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .lavender-bracket {
+            color: #D6BCFA;
+            font-size: 5rem; 
+            font-weight: 100;
+            line-height: 0.7;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .equation-stack {
+            display: flex; 
+            flex-direction: column; 
+            gap: 1.2rem; 
+            white-space: nowrap;
+        }
+
+        .step-entry {
+            border-left: 3px solid #D6BCFA;
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 0.4s ease-out;
+            color: #94a3b8;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 0 15px 15px 0;
+            font-size: 0.85rem;
+        }
+
+        .step-entry b {
+            display: block;
+            margin-top: 10px;
+            color: #f8fafc;
+            font-family: 'Fira Code', monospace;
+            background: #1e293b;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-weight: 500;
+            overflow-x: auto;
+            border: 1px solid rgba(214, 188, 250, 0.1);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            font-size: 0.85rem;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        .btn-correct { background-color: #dcfce7 !important; border-color: #22c55e !important; color: #166534 !important; }
+        .btn-wrong { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .congrats-overlay {
+            position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: rgba(15, 23, 42, 0.98);
             z-index: 100;
-        }
-
-        .expert-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.5rem;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 2.2rem;
         }
     </style>
 </head>
 <body class="min-h-screen">
 
-    <header class="max-w-7xl mx-auto p-6 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-        <div class="flex items-center gap-4 cursor-pointer" onclick="goHome()">
-            <div class="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-xl rotate-2 border-2 border-indigo-900">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 2v20M2 12h20"/></svg>
-            </div>
-            <div>
-                <h1 class="text-3xl font-black text-slate-800 tracking-tighter">ESTUDIO PRO</h1>
-                <p class="text-[10px] font-bold text-indigo-500 uppercase tracking-widest">Matemáticas Avanzadas</p>
-            </div>
-        </div>
-
-        <div class="flex items-center gap-8 bg-white p-4 px-8 rounded-full border-2 border-slate-100 shadow-sm">
-            <div class="flex flex-col items-end">
-                <span class="text-[9px] font-black uppercase text-slate-400 tracking-wider">Maestría Global</span>
-                <div class="progress-container mt-1">
-                    <div id="mastery-fill" class="progress-fill" style="width: 0%"></div>
+    <header class="bg-slate-900 text-white shadow-xl sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-black text-indigo-400 tracking-tight">Estudio PRO <span class="text-slate-500 font-light text-[9px] ml-2 uppercase tracking-[0.2em]">Master Algebra</span></h1>
+            <div class="flex gap-6 items-center">
+                <div class="text-right">
+                    <span class="text-[8px] uppercase text-slate-500 font-black block tracking-widest">DOMINIO</span>
+                    <span class="text-lg font-mono font-bold text-indigo-300" id="ui-points">0</span>
                 </div>
-            </div>
-            <div class="flex flex-col items-center">
-                <span class="text-[9px] font-black uppercase text-slate-400">Racha</span>
-                <span id="streak-count" class="text-2xl font-black text-indigo-600">0</span>
+                <div id="ui-streak" class="bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 px-3 py-1 rounded-full text-xs font-black">0 🔥</div>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-4 relative z-10">
+    <main class="container mx-auto px-4 py-6">
         
-        <!-- INICIO -->
-        <div id="view-home">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-                <div class="lg:col-span-2 minimal-card p-10 bg-white flex flex-col justify-center border-b-8 border-indigo-50">
-                    <h2 class="text-4xl font-black text-slate-800 mb-2 tracking-tight">Módulos de Práctica</h2>
-                    <p class="text-slate-500 font-semibold text-lg leading-relaxed">Consigue 10 puntos en cada módulo. En los niveles avanzados, debes ganar al menos 2 puntos en modo Experto.</p>
-                    <button id="btn-reset" onclick="resetProgress()" class="hidden w-fit mt-6 text-rose-500 font-bold text-xs uppercase hover:underline">Reiniciar Academia</button>
-                </div>
-                <div id="card-rank" class="minimal-card p-10 flex flex-col items-center justify-center text-center bg-slate-800 text-white border-none shadow-xl transition-all">
-                    <div id="rank-icon" class="text-7xl mb-4">🌱</div>
-                    <span class="text-[10px] font-black uppercase opacity-60 tracking-widest">Tu Estatus</span>
-                    <h3 id="rank-name" class="text-xl font-black mt-1 uppercase">Novato</h3>
-                    <button id="btn-claim-diploma" onclick="openNameModal()" class="hidden-view mt-4 bg-amber-400 text-slate-900 px-6 py-2 rounded-xl font-black text-xs uppercase shadow-lg animate-bounce">¡Canjear Diploma!</button>
-                </div>
+        <div id="screen-categories" class="max-w-6xl mx-auto animate-in fade-in duration-700">
+            <div class="mb-10 text-center">
+                <h2 class="text-3xl font-black text-slate-900 tracking-tighter mb-3">Laboratorio de Álgebra Rigurosa</h2>
+                <div class="h-1 w-16 bg-indigo-500 mx-auto rounded-full"></div>
+                <p class="text-slate-500 mt-3 text-sm italic">Resolución de sistemas de ecuaciones no lineales y radicales.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="grid-categories"></div>
-        </div>
-
-        <!-- NIVEL -->
-        <div id="view-diff" class="hidden-view text-center max-w-4xl mx-auto py-12">
-            <h2 class="text-5xl font-black mb-16 text-slate-800 tracking-tight">Selecciona tu Nivel</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 px-6">
-                <button onclick="startExercise('aprendiz')" class="minimal-card p-14 hover:border-indigo-600 group bg-white shadow-lg">
-                    <div class="text-7xl mb-8 transition-transform group-hover:scale-110">📗</div>
-                    <h3 class="text-3xl font-black mb-2 uppercase">Aprendiz</h3>
-                    <p class="text-slate-400 font-bold text-lg">Gana 1 punto por acierto.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <button onclick="showDifficulty('simples')" class="glass-card p-8 rounded-[2.5rem] text-left group">
+                    <div class="w-12 h-12 bg-emerald-50 text-emerald-500 rounded-2xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">XY</div>
+                    <h3 class="font-extrabold text-slate-800 text-xl">Sistemas No Lineales</h3>
+                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">Ejercicios estrictamente Cuadráticos o de Producto.</p>
                 </button>
-                <button onclick="startExercise('experto')" class="minimal-card p-14 hover:border-indigo-600 group bg-white shadow-lg">
-                    <div class="text-7xl mb-8 transition-transform group-hover:scale-110">📕</div>
-                    <h3 class="text-3xl font-black mb-2 uppercase">Experto</h3>
-                    <p class="text-slate-400 font-bold text-lg">Gana 2 puntos por acierto.</p>
+                <button onclick="showDifficulty('radicales')" class="glass-card p-8 rounded-[2.5rem] text-left group">
+                    <div class="w-12 h-12 bg-purple-50 text-purple-500 rounded-2xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">√x</div>
+                    <h3 class="font-extrabold text-slate-800 text-xl">Sistemas Radicales</h3>
+                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">Eliminación de raíces y comprobación obligatoria.</p>
+                </button>
+                <button onclick="showDifficulty('racionales')" class="glass-card p-8 rounded-[2.5rem] text-left group">
+                    <div class="w-12 h-12 bg-orange-50 text-orange-500 rounded-2xl flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">1/x</div>
+                    <h3 class="font-extrabold text-slate-800 text-xl">Sistemas Racionales</h3>
+                    <p class="text-xs text-slate-500 mt-2 leading-relaxed">Uso de m.c.m. algebraico y simplificación.</p>
                 </button>
             </div>
-            <button onclick="goHome()" class="mt-16 text-slate-400 font-black hover:text-indigo-600 transition-all uppercase text-sm tracking-[0.2em]">← Volver al Aula</button>
         </div>
 
-        <!-- PIZARRA -->
-        <div id="view-exercise" class="hidden-view w-full mx-auto">
-            <div class="flex justify-between items-center mb-6">
-                <button onclick="goHome()" class="btn-action px-6 py-3 text-[10px]">← Menú</button>
-                <div id="badge-diff" class="bg-slate-900 text-white px-5 py-2 rounded-xl text-[10px] font-black uppercase tracking-[0.2em]">MODO</div>
+        <div id="screen-difficulty" class="hidden max-w-2xl mx-auto py-16 text-center">
+            <h2 class="text-3xl font-black text-slate-900 mb-8 tracking-tighter uppercase">Dificultad</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <button onclick="initGame('basico')" class="p-8 border-2 border-slate-200 rounded-[2rem] bg-white hover:border-indigo-500 hover:shadow-xl transition-all">
+                    <span class="text-[9px] font-black uppercase text-blue-500 bg-blue-50 px-3 py-1 rounded-full tracking-widest">Aprendiz</span>
+                    <h3 class="text-xl font-black mt-4 text-slate-800">Nivel 1</h3>
+                </button>
+                <button onclick="initGame('experto')" class="p-8 border-2 border-slate-200 rounded-[2rem] bg-white hover:border-indigo-600 hover:shadow-xl transition-all">
+                    <span class="text-[9px] font-black uppercase text-red-500 bg-red-50 px-3 py-1 rounded-full tracking-widest">Matemático</span>
+                    <h3 class="text-xl font-black mt-4 text-slate-800">Nivel 2</h3>
+                </button>
             </div>
-            <div class="chalkboard">
-                <div class="w-full flex justify-between items-start opacity-20 mb-10 px-4">
-                    <span id="txt-module" class="text-sm font-black uppercase tracking-[0.4em]">PIZARRA</span>
-                    <span class="text-[10px] font-black uppercase">Academia Estudio Pro</span>
-                </div>
-                <h3 id="txt-instruction" class="text-2xl md:text-3xl font-bold mb-10 text-center max-w-4xl text-white/80">...</h3>
-                <div id="display-area" class="flex-grow flex items-center justify-center w-full my-6">
-                    <div id="math-problem" class="text-center w-full text-white"></div>
-                </div>
-                <div class="w-full max-w-2xl relative z-10">
-                    <div id="input-container"></div>
-                    <div id="feedback-box" class="hidden mt-8 p-6 rounded-[2rem] font-black text-center border-4 border-white/10"></div>
-                    <div class="mt-12 flex gap-6 w-full">
-                        <button id="btn-check" onclick="check()" class="flex-1 btn-action btn-success py-6 text-sm">Comprobar</button>
-                        <button id="btn-next" onclick="nextExercise()" class="hidden flex-1 btn-action btn-primary py-6 text-sm">Siguiente</button>
-                        <button id="btn-skip" onclick="nextExercise()" class="btn-action btn-danger px-10 py-6 text-sm">Saltar</button>
+            <button onclick="showHome()" class="mt-10 text-slate-400 hover:text-slate-600 font-bold uppercase text-[9px] tracking-widest flex items-center justify-center gap-2 mx-auto">
+                VOLVER AL INICIO
+            </button>
+        </div>
+
+        <div id="screen-game" class="hidden space-y-6 max-w-7xl mx-auto">
+            <div class="blackboard rounded-[2.5rem]">
+                <div id="congrats-modal" class="hidden congrats-overlay">
+                    <div class="bg-white p-12 rounded-[3rem] text-center border-[8px] border-indigo-600 shadow-2xl">
+                        <h2 class="text-4xl font-black text-indigo-600 mb-4 tracking-tighter">¡LOGRADO!</h2>
+                        <button onclick="processNext(true)" class="bg-indigo-600 text-white px-10 py-4 rounded-[1.5rem] font-black text-lg hover:bg-indigo-700 transition-all shadow-xl">Siguiente Ejercicio</button>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- MODAL NOMBRE -->
-        <div id="modal-name" class="modal-overlay hidden-view">
-            <div class="bg-white p-12 rounded-[2.5rem] text-center max-w-md w-full shadow-2xl border-4 border-amber-400">
-                <h3 class="text-3xl font-black mb-4">¡Maestría Total!</h3>
-                <p class="text-slate-500 font-bold mb-8 italic">Introduce tu nombre completo para emitir el diploma:</p>
-                <input type="text" id="user-name-input" class="w-full text-center p-5 border-2 border-slate-200 rounded-2xl mb-8 font-black uppercase text-xl text-slate-800 placeholder-slate-300 outline-none focus:border-indigo-500" placeholder="NOMBRE COMPLETO">
-                <button onclick="generateDiploma()" class="btn-action btn-primary w-full py-5 text-base">Generar Diploma</button>
-                <button onclick="document.getElementById('modal-name').classList.add('hidden-view')" class="mt-4 text-slate-400 font-bold text-[10px] uppercase hover:text-rose-500 transition-all">Cancelar</button>
+                <div class="system-display-area">
+                    <div class="system-container">
+                        <span class="lavender-bracket">{</span>
+                        <div id="equation-lines" class="equation-stack text-lg md:text-xl math-font"></div>
+                    </div>
+                </div>
+                <div class="log-area" id="log-container">
+                    <h4 class="text-[8px] text-slate-500 uppercase tracking-widest mb-4 font-black border-b border-slate-800 pb-2 flex justify-between">
+                        <span>Bitácora de Resolución</span>
+                        <span class="text-indigo-400 opacity-50 font-mono">Algebra Engine</span>
+                    </h4>
+                    <div id="blackboard-history" class="math-font"></div>
+                </div>
             </div>
-        </div>
 
-        <!-- DIPLOMA -->
-        <div id="view-diploma" class="hidden-view w-full max-w-5xl mx-auto py-12">
-            <div class="diploma-bg text-center">
-                <h2 class="text-6xl font-black text-slate-800 mb-4 tracking-tighter">CERTIFICADO DE EXCELENCIA</h2>
-                <p class="text-xl font-bold text-amber-700 uppercase tracking-[0.4em] mb-12">Academia de Matemáticas Estudio Pro</p>
-                <p class="text-2xl italic text-slate-500 mb-2">Se otorga con distinción de honor al alumno</p>
-                <p class="text-5xl font-black text-slate-900 mb-6 border-b-8 border-amber-200 inline-block px-12 pb-4 tracking-tight" id="diploma-name-text">NOMBRE</p>
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <div class="lg:col-span-3">
+                    <div class="glass-card p-8 rounded-[2rem]">
+                        <div class="flex flex-wrap justify-between items-center mb-6 gap-4">
+                            <h2 id="instruction-text" class="text-lg font-black text-slate-800 tracking-tight"></h2>
+                            <span id="game-info-label" class="text-[8px] px-4 py-1.5 bg-indigo-50 text-indigo-600 rounded-full font-black uppercase tracking-widest"></span>
+                        </div>
+                        <div id="game-options" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+                        
+                        <div id="feedback-ui" class="hidden mt-6 p-6 rounded-[1.5rem] border-l-[8px] animate-in slide-in-from-bottom-3">
+                            <div class="flex justify-between items-center gap-6">
+                                <p id="feedback-msg" class="text-sm font-medium flex-1"></p>
+                                <button id="btn-next-step" onclick="processNext()" class="hidden shrink-0 bg-slate-900 text-white px-6 py-3 rounded-xl font-black hover:bg-slate-800 transition-all text-xs">CONTINUAR →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
-                <div class="bg-amber-50 p-6 rounded-3xl border-2 border-amber-100 mb-10 max-w-2xl mx-auto">
-                    <p id="diploma-special-message" class="text-xl font-bold text-amber-900 leading-relaxed italic"></p>
+                <div class="space-y-4">
+                    <div class="glass-card p-6 rounded-[2rem] text-center">
+                        <canvas id="progressCanvas" height="120" class="w-full"></canvas>
+                    </div>
+                    <button onclick="skipExercise()" class="w-full py-4 bg-white border-2 border-slate-100 text-indigo-600 font-black rounded-2xl hover:bg-indigo-50 transition-all text-[10px] tracking-widest">SALTAR</button>
                 </div>
-
-                <p class="text-base text-slate-500 leading-relaxed max-w-3xl mx-auto mb-16 px-10">
-                    Por haber superado con éxito todos los desafíos avanzados de números decimales, operaciones combinadas complejas, 
-                    clasificación fraccionaria y resolución de problemas de nivel 1º ESO con precisión absoluta.
-                </p>
-                <div class="flex justify-around items-end">
-                    <div class="text-center"><p class="text-2xl font-black text-slate-800">VALIDADO</p><p class="text-[10px] font-black text-slate-400 uppercase">Control Académico</p></div>
-                    <div class="diploma-seal text-[11px] leading-tight">SUMMA CUM<br>LAUDE</div>
-                    <div class="text-center"><p class="text-2xl font-black text-slate-800">2026</p><p class="text-[10px] font-black text-slate-400 uppercase">Año Lectivo</p></div>
-                </div>
-            </div>
-            <div class="text-center mt-12 flex flex-col items-center gap-4">
-                <button onclick="goHome()" class="btn-action btn-primary px-16 py-6 text-lg">Seguir Practicando</button>
-                <p class="text-slate-400 text-xs font-bold uppercase">¡Tu maestría se mantiene guardada!</p>
             </div>
         </div>
-
     </main>
 
     <script>
-        function getGCD(a, b) { return b ? getGCD(b, a % b) : a; }
-
-        function getFractionType(n, d) {
-            const common = getGCD(n, d);
-            let simplifiedD = d / common;
-            if (simplifiedD === 1) return 'Exacto';
-            let tempD = simplifiedD;
-            while (tempD % 2 === 0) tempD /= 2;
-            while (tempD % 5 === 0) tempD /= 5;
-            if (tempD === 1) return 'Exacto';
-            if (tempD === simplifiedD) return 'P. Puro';
-            return 'P. Mixto';
-        }
-
-        const categories = [
-            { id: 'ident', title: 'Clasificación', icon: '🏷️', needsDiff: false, color: 'bg-indigo-50' },
-            { id: 'repr', title: 'Representación', icon: '📏', needsDiff: false, color: 'bg-blue-50' },
-            { id: 'aprox', title: 'Aproximación', icon: '🎯', needsDiff: false, color: 'bg-emerald-50' },
-            { id: 'sum', title: 'Suma y Resta', icon: '➕', needsDiff: true, color: 'bg-amber-50' },
-            { id: 'mult', title: 'Multiplicación', icon: '✖️', needsDiff: true, color: 'bg-orange-50' },
-            { id: 'div', title: 'División', icon: '➗', needsDiff: true, color: 'bg-rose-50' },
-            { id: 'pot10', title: 'Potencias de 10', icon: '🚀', needsDiff: true, color: 'bg-cyan-50' },
-            { id: 'comb', title: 'Combinadas', icon: '🧩', needsDiff: true, color: 'bg-violet-50' },
-            { id: 'prob', title: 'Problemas', icon: '🏫', needsDiff: true, color: 'bg-slate-50' }
-        ];
-
-        const POINTS_GOAL = 10;
-        const EXPERT_GOAL = 2;
-
-        const state = { 
-            streak: 0, category: null, difficulty: 'aprendiz', currentAns: null, currentHint: "", answered: false, 
-            mastery: {} 
+        const DATABASE = {
+            simples: {
+                basico: [
+                    { system: ["x + y = 2", "x · y = -3"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "Igualación", "Reducción"], ans: "Sustitución", show: "Método", label: "Sustitución", exp: "Aislar x en la lineal es ideal." },
+                        { q: "Paso 1: Despejar x en la lineal:", opt: ["x = 2 - y", "x = y - 2"], ans: "x = 2 - y", show: "Despeje", label: "x = 2 - y", exp: "Trasposición estándar." },
+                        { q: "Paso 2: Sustituir x en la segunda ecuación:", opt: ["(2 - y) · y = -3", "x · y = -3"], ans: "(2 - y) · y = -3", show: "Sustitución", label: "(2 - y) · y = -3", exp: "Cambiamos x por la expresión aislada." },
+                        { q: "Paso 3: Resolver para y:", opt: ["y = 3, y = -1", "y = 1"], ans: "y = 3, y = -1", show: "y", label: "y = 3, y = -1", exp: "Raíces por fórmula general." },
+                        { q: "Paso 4: Calcular x:", opt: ["x = -1, x = 3", "x = 0"], ans: "x = -1, x = 3", show: "x", label: "x = -1, x = 3", exp: "x = 2 - y." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(-1, 3) y (3, -1)", "(1, 1)"], ans: "(-1, 3) y (3, -1)", show: "Final", label: "(-1, 3), (3, -1)", exp: "Coordenadas finales.", isLast: true }
+                    ]},
+                    { system: ["x² + y = 5", "x + y = 3"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "Igualación", "Reducción"], ans: "Sustitución", show: "Método", label: "Sustitución", exp: "Despejar y es directo." },
+                        { q: "Paso 1: Despejar y:", opt: ["y = 3 - x", "y = x - 3"], ans: "y = 3 - x", show: "Despeje", label: "y = 3 - x", exp: "Correcto." },
+                        { q: "Paso 2: Resolver para x:", opt: ["x = 2, x = -1", "x = 0"], ans: "x = 2, x = -1", show: "x", label: "x = 2, x = -1", exp: "x² - x - 2 = 0." },
+                        { q: "Paso 3: Obtener y:", opt: ["y = 1, y = 4", "y = 2"], ans: "y = 1, y = 4", show: "y", label: "y = 1, y = 4", exp: "y = 3 - x." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(2, 1) y (-1, 4)", "(2, 1)"], ans: "(2, 1) y (-1, 4)", show: "Final", label: "(2, 1), (-1, 4)", exp: "Hecho.", isLast: true }
+                    ]},
+                    { system: ["x² + y² = 5", "x² - y² = 3"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "Igualación", "Reducción"], ans: "Reducción", show: "Método", label: "Reducción", exp: "Sumar anula y²." },
+                        { q: "Paso 1: Sumar ecuaciones:", opt: ["2x² = 8", "x² = 4"], ans: "2x² = 8", show: "Suma", label: "2x² = 8", exp: "Eliminamos y²." },
+                        { q: "Paso 2: Obtener x:", opt: ["x = 2, x = -2", "x = 4"], ans: "x = 2, x = -2", show: "x", label: "x = 2, x = -2", exp: "x² = 4." },
+                        { q: "Paso 3: Obtener y:", opt: ["y = 1, y = -1", "y = 3"], ans: "y = 1, y = -1", show: "y", label: "y = 1, y = -1", exp: "4 + y² = 5." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(2, 1), (2, -1), (-2, 1) y (-2, -1)", "(2, 1)"], ans: "(2, 1), (2, -1), (-2, 1) y (-2, -1)", show: "Final", label: "4 puntos", exp: "Listo.", isLast: true }
+                    ]}
+                ],
+                experto: [
+                    { system: ["x² + y² = 13", "y + 2x = 1"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "Igualación", "Reducción"], ans: "Sustitución", show: "Método", label: "Sustitución", exp: "Despejamos y." },
+                        { q: "Paso 1: Despejar y:", opt: ["y = 1 - 2x", "y = 2x - 1"], ans: "y = 1 - 2x", show: "Despeje", label: "y = 1 - 2x", exp: "Correcto." },
+                        { q: "Paso 2: Desarrollo Identidad Notable (1-2x)²:", opt: ["1 - 4x + 4x²", "1 + 4x + 4x²"], ans: "1 - 4x + 4x²", show: "Identidad", label: "1 - 4x + 4x²", exp: "1² - 2·1·2x + (2x)²." },
+                        { q: "Paso 3: Resolver para x:", opt: ["x = 2, x = -6/5", "x = 0"], ans: "x = 2, x = -6/5", show: "x", label: "x = 2, x = -6/5", exp: "Fórmula general." },
+                        { q: "Paso 4: Obtener y:", opt: ["y = -3, y = 17/5", "y = 1"], ans: "y = -3, y = 17/5", show: "y", label: "y = -3, y = 17/5", exp: "y = 1 - 2x." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(2, -3) y (-6/5, 17/5)", "(2, 3)"], ans: "(2, -3) y (-6/5, 17/5)", show: "Final", label: "2 puntos", exp: "Listo.", isLast: true }
+                    ]},
+                    { system: ["x² + y² = 5", "x + 2y = 4"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "Igualación", "Reducción"], ans: "Sustitución", show: "Método", label: "Sustitución", exp: "Aislamos x." },
+                        { q: "Paso 1: Despejar x:", opt: ["x = 4 - 2y", "x = 2y - 4"], ans: "x = 4 - 2y", show: "Despeje", label: "x = 4 - 2y", exp: "Trasposición." },
+                        { q: "Paso 2: Desarrollo Identidad Notable (4-2y)²:", opt: ["16 - 16y + 4y²", "16 + 4y²"], ans: "16 - 16y + 4y²", show: "Identidad", label: "16 - 16y + 4y²", exp: "Cuadrado del binomio." },
+                        { q: "Paso 3: Resolver para y en fracciones:", opt: ["y = 11/5, y = 1", "y = 0"], ans: "y = 11/5, y = 1", show: "y", label: "y = 11/5, y = 1", exp: "5y² - 16y + 11 = 0." },
+                        { q: "Paso 4: Obtener x:", opt: ["x = -2/5, x = 2", "x = 1"], ans: "x = -2/5, x = 2", show: "x", label: "x = -2/5, x = 2", exp: "x = 4 - 2y." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(-2/5, 11/5) y (2, 1)", "(2, 1)"], ans: "(-2/5, 11/5) y (2, 1)", show: "Final", label: "2 puntos", exp: "Hecho.", isLast: true }
+                    ]},
+                    { system: ["2x² - y² = 1", "x + y = 2"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "Igualación", "Reducción"], ans: "Sustitución", show: "Método", label: "Sustitución", exp: "Aislamos y." },
+                        { q: "Paso 1: Despejar y:", opt: ["y = 2 - x", "y = x - 2"], ans: "y = 2 - x", show: "Despeje", label: "y = 2 - x", exp: "Correcto." },
+                        { q: "Paso 2: Desarrollo Identidad Notable (2-x)²:", opt: ["4 - 4x + x²", "4 + x²"], ans: "4 - 4x + x²", show: "Identidad", label: "4 - 4x + x²", exp: "Correcto." },
+                        { q: "Paso 3: Resolver para x:", opt: ["x = 1, x = -5", "x = 0"], ans: "x = 1, x = -5", show: "x", label: "x = 1, x = -5", exp: "x² + 4x - 5 = 0." },
+                        { q: "Paso 4: Obtener y:", opt: ["y = 1, y = 7", "y = 2"], ans: "y = 1, y = 7", show: "y", label: "y = 1, y = 7", exp: "y = 2 - x." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(1, 1) y (-5, 7)", "(1, 1)"], ans: "(1, 1) y (-5, 7)", show: "Final", label: "2 puntos", exp: "Correcto.", isLast: true }
+                    ]}
+                ]
+            },
+            radicales: {
+                basico: [
+                    { system: ["√x + y = 5", "x - y = 1"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "Igualación", "Reducción"], ans: "Sustitución", show: "Método", label: "Sustitución", exp: "Sustituimos x = y + 1." },
+                        { q: "Paso 1: Obtener la ecuación radical:", opt: ["√(y + 1) + y = 5", "√(y - 1) + y = 5"], ans: "√(y + 1) + y = 5", show: "Ec. Radical", label: "√(y+1) + y = 5", exp: "Reemplazo de x." },
+                        { q: "Paso 2: Aislar la raíz cuadrada:", opt: ["√(y + 1) = 5 - y", "√(y + 1) = y - 5"], ans: "√(y + 1) = 5 - y", show: "Aislar", label: "√(y+1) = 5 - y", exp: "Trasposición." },
+                        { q: "Paso 3: Elevar al cuadrado y desarrollar identidad notable:", opt: ["y + 1 = 25 - 10y + y²", "y + 1 = 25 + y²"], ans: "y + 1 = 25 - 10y + y²", show: "Identidad", label: "y+1 = 25-10y+y²", exp: "(5-y)² = 25 - 10y + y²." },
+                        { q: "Paso 4: Resolver la ecuación:", opt: ["y = 3, y = 8", "y = 0"], ans: "y = 3, y = 8", show: "y", label: "y = 3, y = 8", exp: "y² - 11y + 24 = 0." },
+                        { q: "Paso 5: Comprobar soluciones:", opt: ["Solo y = 3 es válida", "Ambas"], ans: "Solo y = 3 es válida", show: "Comprobar", label: "y = 3 OK", exp: "√(4) + 3 = 5." },
+                        { q: "Paso 6: Calcular la otra incógnita x:", opt: ["x = 4", "x = 9"], ans: "x = 4", show: "x", label: "x = 4", exp: "x = 3 + 1 = 4." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(4, 3)", "(3, 4)"], ans: "(4, 3)", show: "Final", label: "(4, 3)", exp: "Listo.", isLast: true }
+                    ]},
+                    { system: ["√x = y - 1", "x + y = 7"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "Igualación", "Reducción"], ans: "Sustitución", show: "Método", label: "Sustitución", exp: "Elevamos al cuadrado Ec.1." },
+                        { q: "Paso 1: Obtener la ecuación radical:", opt: ["(y-1)² + y = 7", "√x + y = 7"], ans: "(y-1)² + y = 7", show: "Ec. Radical", label: "(y-1)² + y = 7", exp: "x = (y-1)²." },
+                        { q: "Paso 2: Aislar la raíz:", opt: ["√x = y - 1", "No aplica"], ans: "√x = y - 1", show: "Aislar", label: "√x = y-1", exp: "Ya aislada." },
+                        { q: "Paso 3: Elevar al cuadrado para eliminar el radical:", opt: ["x = (y-1)²", "x = y-1"], ans: "x = (y-1)²", show: "Elevación", label: "x = (y-1)²", exp: "Correcto." },
+                        { q: "Paso 4: Desarrollar identidad notable:", opt: ["y² - 2y + 1", "y² + 1"], ans: "y² - 2y + 1", show: "Identidad", label: "y² - 2y + 1", exp: "(y-1)² = y² - 2y + 1." },
+                        { q: "Paso 5: Resolver la ecuación:", opt: ["y = 3, y = -2", "y = 1"], ans: "y = 3, y = -2", show: "y", label: "y = 3, y = -2", exp: "y² - y - 6 = 0." },
+                        { q: "Paso 6: Comprobar soluciones:", opt: ["Solo y = 3 es válida", "Ambas"], ans: "Solo y = 3 es válida", show: "Comprobar", label: "y = 3 OK", exp: "√x no es negativo." },
+                        { q: "Paso 7: Calcular x:", opt: ["x = 4", "x = 9"], ans: "x = 4", show: "x", label: "x = 4", exp: "x = 7 - 3 = 4." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(4, 3)", "(3, 4)"], ans: "(4, 3)", show: "Final", label: "(4, 3)", exp: "Hecho.", isLast: true }
+                    ]},
+                    { system: ["√x + √y = 9", "√x - √y = 1"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "Igualación", "Reducción"], ans: "Reducción", show: "Método", label: "Reducción", exp: "Sumamos raíces." },
+                        { q: "Paso 1: Obtener la ecuación radical:", opt: ["2√x = 10", "√x = 5"], ans: ["2√x = 10", "√x = 5"], show: "Ec. Radical", label: "2√x = 10", exp: "Suma de ecuaciones." },
+                        { q: "Paso 2: Aislar la raíz:", opt: ["√x = 5", "√x = 10"], ans: "√x = 5", show: "Aislar", label: "√x = 5", exp: "Correcto." },
+                        { q: "Paso 3: Elevar al cuadrado para eliminar el radical:", opt: ["x = 25", "x = 5"], ans: "x = 25", show: "Elevación", label: "x = 25", exp: "5² = 25." },
+                        { q: "Paso 4: Resolver la ecuación (incógnita y):", opt: ["y = 16", "y = 4"], ans: "y = 16", show: "y", label: "y = 16", exp: "5 + √y = 9." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(25, 16)", "(16, 25)"], ans: "(25, 16)", show: "Final", label: "(25, 16)", exp: "Listo.", isLast: true }
+                    ]}
+                ],
+                experto: [
+                    { system: ["√(2y+1) + x = 2", "x - 4y = 4"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "Igualación", "Reducción"], ans: "Sustitución", show: "Método", label: "Sustitución", exp: "x = 4y + 4." },
+                        { q: "Paso 1: Obtener la ecuación radical:", opt: ["√(2y + 1) + 4y + 4 = 2", "√(2y + 1) = 4y + 2"], ans: "√(2y + 1) + 4y + 4 = 2", show: "Ec. Radical", label: "√(2y+1) + 4y+4 = 2", exp: "Sustitución de x." },
+                        { q: "Paso 2: Aislar la raíz:", opt: ["√(2y + 1) = -4y - 2", "√(2y + 1) = 4y + 2"], ans: "√(2y + 1) = -4y - 2", show: "Aislar", label: "√(2y+1) = -4y-2", exp: "Trasposición." },
+                        { q: "Paso 3: Elevar al cuadrado para eliminar el radical:", opt: ["2y + 1 = (-4y - 2)²", "2y + 1 = 4y + 2"], ans: "2y + 1 = (-4y - 2)²", show: "Elevación", label: "2y+1 = (-4y-2)²", exp: "Correcto." },
+                        { q: "Paso 4: Desarrollar identidad notable:", opt: ["16y² + 16y + 4", "16y² + 4"], ans: "16y² + 16y + 4", show: "Identidad", label: "16y²+16y+4", exp: "(-4y-2)² = 16y² + 16y + 4." },
+                        { q: "Paso 5: Resolver la ecuación:", opt: ["y = -1/4, y = -3/4", "y = -1"], ans: "y = -1/4, y = -3/4", show: "y", label: "y = -1/4, y = -3/4", exp: "16y² + 14y + 3 = 0." },
+                        { q: "Paso 6: Comprobar soluciones:", opt: ["Solo y = -3/4 es válida", "Ambas"], ans: "Solo y = -3/4 es válida", show: "Comprobar", label: "y = -3/4 OK", exp: "Verificamos en aislada." },
+                        { q: "Paso 7: Calcular la otra incógnita x:", opt: ["x = 1", "x = 0"], ans: "x = 1", show: "x", label: "x = 1", exp: "x = 4(-3/4)+4 = 1." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(1, -3/4)", "(-3/4, 1)"], ans: "(1, -3/4)", show: "Final", label: "(1, -3/4)", exp: "Listo.", isLast: true }
+                    ]},
+                    { system: ["x - y = 5", "√x + √y = 5"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "Igualación", "Reducción"], ans: "Sustitución", show: "Método", label: "Sustitución", exp: "x = y + 5." },
+                        { q: "Paso 1: Obtener la ecuación radical:", opt: ["√(y + 5) + √y = 5", "y + 5 + √y = 5"], ans: "√(y + 5) + √y = 5", show: "Ec. Radical", label: "√(y+5) + √y = 5", exp: "Sustitución de x." },
+                        { q: "Paso 2: Aislar la raíz:", opt: ["√(y + 5) = 5 - √y", "√(y + 5) = √y - 5"], ans: "√(y + 5) = 5 - √y", show: "Aislar", label: "√(y+5) = 5 - √y", exp: "Pasamos √y." },
+                        { q: "Paso 3: Elevar al cuadrado para eliminar el radical:", opt: ["y + 5 = (5 - √y)²", "y + 5 = 25 + y"], ans: "y + 5 = (5 - √y)²", show: "Elevación 1", label: "y + 5 = (5 - √y)²", exp: "Correcto." },
+                        { q: "Paso 4: Desarrollar identidad notable:", opt: ["25 - 10√y + y", "25 + y"], ans: "25 - 10√y + y", show: "Identidad", label: "25 - 10√y + y", exp: "(5-√y)² = 25 - 10√y + y." },
+                        { q: "Paso 5: Volver a aislar la raíz si queda alguna:", opt: ["10√y = 20", "√y = 5"], ans: "10√y = 20", show: "Re-aislar", label: "10√y = 20", exp: "Correcto." },
+                        { q: "Paso 6: Elevar al cuadrado si hemos hecho el paso anterior:", opt: ["y = 4", "y = 2"], ans: "y = 4", show: "Elevación 2", label: "y = 4", exp: "√y = 2 => y = 4." },
+                        { q: "Paso 7: Comprobar soluciones:", opt: ["y = 4 Válida", "No válida"], ans: "y = 4 Válida", show: "Comprobar", label: "y = 4 OK", exp: "√9 + √4 = 3 + 2 = 5." },
+                        { q: "Paso 8: Calcular la otra incógnita x:", opt: ["x = 9", "x = 4"], ans: "x = 9", show: "x", label: "x = 9", exp: "x = 4 + 5 = 9." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(9, 4)", "(4, 9)"], ans: "(9, 4)", show: "Final", label: "(9, 4)", exp: "Hecho.", isLast: true }
+                    ]},
+                    { system: ["x + y = 13", "√(x-1) + √(y+1) = 6"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "Igualación", "Reducción"], ans: "Sustitución", show: "Método", label: "Sustitución", exp: "y = 13 - x." },
+                        { q: "Paso 1: Obtener la ecuación radical:", opt: ["√(x - 1) + √(14 - x) = 6", "√(x-1) = 6"], ans: "√(x - 1) + √(14 - x) = 6", show: "Ec. Radical", label: "√(x-1) + √(14-x) = 6", exp: "y+1 = 14-x." },
+                        { q: "Paso 2: Aislar la raíz:", opt: ["√(x - 1) = 6 - √(14 - x)", "√(x - 1) = 6 - √x"], ans: "√(x - 1) = 6 - √(14 - x)", show: "Aislar", label: "√(x-1)=6-√(14-x)", exp: "Pasamos un radical." },
+                        { q: "Paso 3: Elevar al cuadrado para eliminar el radical:", opt: ["x-1 = (6 - √(14 - x))²", "x-1 = 50-x"], ans: "x-1 = (6 - √(14 - x))²", show: "Elevación 1", label: "x-1 = (6 - √(14-x))²", exp: "Correcto." },
+                        { q: "Paso 4: Desarrollar identidad notable:", opt: ["36 - 12√(14 - x) + 14 - x", "36 + 14 - x"], ans: "36 - 12√(14 - x) + 14 - x", show: "Identidad", label: "2x-51 = -12√(14-x)", exp: "Primer desarrollo." },
+                        { q: "Paso 5: Volver a aislar la raíz si queda alguna:", opt: ["2x - 51 = -12√(14 - x)", "No aplica"], ans: "2x - 51 = -12√(14 - x)", show: "Re-aislar", label: "2x-51 = -12√(14-x)", exp: "Aislamos raíz." },
+                        { q: "Paso 6: Elevar al cuadrado si hemos hecho el paso anterior:", opt: ["(2x - 51)² = 144(14 - x)", "x = 5"], ans: "(2x - 51)² = 144(14 - x)", show: "Elevación 2", label: "Segunda elevación", exp: "Correcto." },
+                        { q: "Paso 7: Resolver la ecuación:", opt: ["x = 5, x = 10", "x = 4"], ans: "x = 5, x = 10", show: "x", label: "x = 5, x = 10", exp: "Raíces halladas." },
+                        { q: "Paso 8: Comprobar soluciones:", opt: ["Ambas válidas", "Ninguna"], ans: "Ambas válidas", show: "Comprobar", label: "x = 5, 10 OK", exp: "Verificamos raíces." },
+                        { q: "Paso 9: Calcular la otra incógnita y:", opt: ["y = 8, y = 3", "y = 5"], ans: "y = 8, y = 3", show: "y", label: "y = 8, y = 3", exp: "y = 13 - x." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(5, 8) y (10, 3)", "(5, 10)"], ans: "(5, 8) y (10, 3)", show: "Final", label: "(5, 8), (10, 3)", exp: "Correcto.", isLast: true }
+                    ]}
+                ]
+            },
+            racionales: {
+                basico: [
+                    { system: ["1/x + 1/y = 5/6", "x + y = 5"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "m.c.m. para quitar denominadores", "Igualación"], ans: "m.c.m. para quitar denominadores", show: "Método", label: "m.c.m.", exp: "Iniciamos quitando denominadores." },
+                        { q: "Elegir el mínimo común múltiplo para Ec.1:", opt: ["6xy", "6x", "6y"], ans: "6xy", show: "m.c.m.", label: "6xy", exp: "Denominador común." },
+                        { q: "Obtener la nueva ecuación:", opt: ["6y + 6x = 5xy", "y + x = 5"], ans: "6y + 6x = 5xy", show: "Nueva Ec.", label: "6x + 6y = 5xy", exp: "Multiplicamos cada término por 6xy." },
+                        { q: "Formar el nuevo sistema con llaves al igual que el original:", opt: ["{ 6x + 6y = 5xy ; x + y = 5 }", "{ x + y = 5 ; xy = 6 }"], ans: "{ 6x + 6y = 5xy ; x + y = 5 }", show: "Nuevo Sistema", label: "{ 6x+6y=5xy ; x+y=5 }", exp: "Sistema equivalente." },
+                        { q: "Elegir método o sustituir:", opt: ["Sustituir x+y = 5", "Reducción"], ans: "Sustituir x+y = 5", show: "Paso", label: "30 = 5xy => xy = 6", exp: "6(x+y) = 5xy => 6(5) = 30." },
+                        { q: "Resolver para una incógnita y:", opt: ["y = 3, y = 2", "y = 1"], ans: "y = 3, y = 2", show: "y", label: "y = 3, y = 2", exp: "Sustituyendo x=5-y en xy=6." },
+                        { q: "Calcular la otra incógnita x:", opt: ["x = 2, x = 3", "x = 4"], ans: "x = 2, x = 3", show: "x", label: "x = 2, x = 3", exp: "x = 5 - y." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(2, 3) y (3, 2)", "(2, 3)"], ans: "(2, 3) y (3, 2)", show: "Final", label: "(2, 3), (3, 2)", exp: "Coordenadas finales.", isLast: true }
+                    ]},
+                    { system: ["2/x - 3/y = 1", "x · y = 6"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "m.c.m. para quitar denominadores", "Igualación"], ans: "m.c.m. para quitar denominadores", show: "Método", label: "m.c.m.", exp: "Operamos Ec.1." },
+                        { q: "Elegir el mínimo común múltiplo para Ec.1:", opt: ["xy", "x", "y"], ans: "xy", show: "m.c.m.", label: "xy", exp: "Multiplicamos por xy." },
+                        { q: "Obtener la nueva ecuación:", opt: ["2y - 3x = xy", "2y - 3x = 1"], ans: "2y - 3x = xy", show: "Nueva Ec.", label: "2y - 3x = xy", exp: "Eliminamos denominadores." },
+                        { q: "Formar el nuevo sistema con llaves al igual que el original:", opt: ["{ 2y - 3x = xy ; xy = 6 }", "{ 2y - 3x = 1 ; xy = 6 }"], ans: "{ 2y - 3x = xy ; xy = 6 }", show: "Nuevo Sistema", label: "{ 2y-3x=xy ; xy=6 }", exp: "Sistema de llaves." },
+                        { q: "Elegir método o sustituir:", opt: ["Sustituir xy = 6", "Sustituir x = 6/y"], ans: "Sustituir xy = 6", show: "Paso", label: "2y - 3x = 6", exp: "Correcto." },
+                        { q: "Resolver para una incógnita y:", opt: ["y = 3, y = -2", "y = 1"], ans: "y = 3, y = -2", show: "y", label: "y = 3, y = -2", exp: "Cálculos cuadráticos." },
+                        { q: "Calcular la otra incógnita x:", opt: ["x = 2, x = -3", "x = 0"], ans: "x = 2, x = -3", show: "x", label: "x = 2, x = -3", exp: "x = 6/y." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(2, 3) y (-3, -2)", "(2, 3)"], ans: "(2, 3) y (-3, -2)", show: "Final", label: "(2, 3), (-3, -2)", exp: "Listo.", isLast: true }
+                    ]},
+                    { system: ["1/x + 1/y = 2", "x + y = 2"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "m.c.m. para quitar denominadores", "Igualación"], ans: "m.c.m. para quitar denominadores", show: "Método", label: "m.c.m.", exp: "Quitamos denominadores." },
+                        { q: "Elegir el mínimo común múltiplo para Ec.1:", opt: ["xy", "x", "y"], ans: "xy", show: "m.c.m.", label: "xy", exp: "Denominador común." },
+                        { q: "Obtener la nueva ecuación:", opt: ["y + x = 2xy", "y + x = 2"], ans: "y + x = 2xy", show: "Nueva Ec.", label: "x + y = 2xy", exp: "Multiplicamos por xy." },
+                        { q: "Formar el nuevo sistema con llaves al igual que el original:", opt: ["{ x + y = 2xy ; x + y = 2 }", "{ x + y = 2 ; xy = 1 }"], ans: "{ x + y = 2xy ; x + y = 2 }", show: "Nuevo Sistema", label: "{ x+y=2xy ; x+y=2 }", exp: "Sistema de llaves." },
+                        { q: "Elegir método o sustituir:", opt: ["Sustituir x+y = 2", "Igualar"], ans: "Sustituir x+y = 2", show: "Paso", label: "2 = 2xy => xy = 1", exp: "2 = 2xy." },
+                        { q: "Resolver para una incógnita y:", opt: ["y = 1", "y = 2"], ans: "y = 1", show: "y", label: "y = 1", exp: "Sustituyendo x=2-y." },
+                        { q: "Calcular la otra incógnita x:", opt: ["x = 1", "x = 2"], ans: "x = 1", show: "x", label: "x = 1", exp: "x = 2 - 1 = 1." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(1, 1)", "(2, 0)"], ans: "(1, 1)", show: "Final", label: "(1, 1)", exp: "Solución única.", isLast: true }
+                    ]}
+                ],
+                experto: [
+                    { system: ["1/x + 1/y = 1 - 1/xy", "x · y = 6"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "m.c.m. para quitar denominadores", "Igualación"], ans: "m.c.m. para quitar denominadores", show: "Método", label: "m.c.m.", exp: "Usaremos m.c.m." },
+                        { q: "Elegir el mínimo común múltiplo para Ec.1:", opt: ["xy", "x", "y"], ans: "xy", show: "m.c.m.", label: "xy", exp: "Común denominador." },
+                        { q: "Obtener la nueva ecuación:", opt: ["x + y = xy - 1", "x + y = xy"], ans: "x + y = xy - 1", show: "Nueva Ec.", label: "x + y = xy - 1", exp: "Multiplicamos por xy." },
+                        { q: "Formar el nuevo sistema con llaves al igual que el original:", opt: ["{ x + y = xy - 1 ; xy = 6 }", "{ x + y = 6 ; xy = 1 }"], ans: "{ x + y = xy - 1 ; xy = 6 }", show: "Nuevo Sistema", label: "{ x+y=xy-1 ; xy=6 }", exp: "Alineación de llaves." },
+                        { q: "Elegir método o sustituir:", opt: ["Sustituir xy = 6", "Reducción"], ans: "Sustituir xy = 6", show: "Paso", label: "x + y = 5", exp: "6 - 1 = 5." },
+                        { q: "Resolver para una incógnita y:", opt: ["y = 3, y = 2", "y = 6"], ans: "y = 3, y = 2", show: "y", label: "y = 3, y = 2", exp: "Sustituyendo x = 5-y." },
+                        { q: "Calcular la otra incógnita x:", opt: ["x = 2, x = 3", "x = 1"], ans: "x = 2, x = 3", show: "x", label: "x = 2, x = 3", exp: "x = 5 - y." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(2, 3) y (3, 2)", "(2, 3)"], ans: "(2, 3) y (3, 2)", show: "Final", label: "(2, 3), (3, 2)", exp: "Hecho.", isLast: true }
+                    ]},
+                    { system: ["(x-y)/(x+y) + (x+y)/(x-y) = 5/2", "x + y = 2"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "m.c.m. para quitar denominadores", "Igualación"], ans: "m.c.m. para quitar denominadores", show: "Método", label: "m.c.m.", exp: "Operamos denominadores." },
+                        { q: "Paso 1: Despejar/Sustituir x+y=2 en Ec.1:", opt: ["(x-y)/2 + 2/(x-y) = 5/2", "(x-y)/2 = 5/2"], ans: "(x-y)/2 + 2/(x-y) = 5/2", show: "Sustitución", label: "(x-y)/2 + 2/(x-y) = 5/2", exp: "Reemplazo de suma." },
+                        { q: "Paso 2: Quitar denominadores (m.c.m. = 2(x-y)):", opt: ["(x-y)² + 4 = 5(x-y)", "(x-y)² + 4 = 10"], ans: ["(x-y)² + 4 = 5(x-y)", "(x-y)² + 4 = 10"], show: "m.c.m.", label: "(x-y)² + 4 = 5(x-y)", exp: "m.c.m. = 2(x-y)." },
+                        { q: "Paso 3: Desarrollar la ecuación cuadrática:", opt: ["(x-y)² - 5(x-y) + 4 = 0", "(x-y)² + 4 = 0"], ans: "(x-y)² - 5(x-y) + 4 = 0", show: "Ecuación", label: "(x-y)² - 5(x-y) + 4 = 0", exp: "Agrupación." },
+                        { q: "Paso 4: Resolver para una incógnita (x-y):", opt: ["x-y = 4, x-y = 1", "x-y = 2"], ans: "x-y = 4, x-y = 1", show: "Diferencia", label: "x - y = 4, x - y = 1", exp: "Raíces halladas." },
+                        { q: "Paso 5: Calcular la otra incógnita x e y:", opt: ["(3, -1) y (3/2, 1/2)", "(1, 1)"], ans: "(3, -1) y (3/2, 1/2)", show: "Incógnitas", label: "(3, -1), (3/2, 1/2)", exp: "Sistemas lineales." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(3, -1) y (3/2, 1/2)", "(3, -1)"], ans: "(3, -1) y (3/2, 1/2)", show: "Final", label: "2 soluciones", exp: "Listo.", isLast: true }
+                    ]},
+                    { system: ["1/x² + 1/y² = 13/36", "x · y = 6"], steps: [
+                        { q: "¿Elegir método?", opt: ["Sustitución", "m.c.m. para quitar denominadores", "Igualación"], ans: "m.c.m. para quitar denominadores", show: "Método", label: "m.c.m.", exp: "Usaremos m.c.m. primero." },
+                        { q: "Elegir el mínimo común múltiplo para Ec.1:", opt: ["36x²y²", "xy"], ans: "36x²y²", show: "m.c.m.", label: "36x²y²", exp: "Correcto." },
+                        { q: "Obtener la nueva ecuación:", opt: ["36y² + 36x² = 13x²y²", "x² + y² = 13"], ans: "36y² + 36x² = 13x²y²", show: "Nueva Ec.", label: "x² + y² = 13", exp: "36(x²+y²) = 13(6²) = 13(36)." },
+                        { q: "Formar el nuevo sistema con llaves al igual que el original:", opt: ["{ x² + y² = 13 ; xy = 6 }", "{ x² + y² = 5 ; xy = 6 }"], ans: "{ x² + y² = 13 ; xy = 6 }", show: "Nuevo Sistema", label: "{ x²+y²=13 ; xy=6 }", exp: "Sistema equivalente." },
+                        { q: "Resolver para una incógnita x:", opt: ["x = ±3, x = ±2", "x = 4"], ans: "x = ±3, x = ±2", show: "x", label: "x = ±3, x = ±2", exp: "Resolución cuadrática." },
+                        { q: "Calcular la otra incógnita y:", opt: ["y = ±2, y = ±3", "y = 6"], ans: "y = ±2, y = ±3", show: "y", label: "y = ±2, y = ±3", exp: "y = 6/x." },
+                        { q: "Paso Final: Elegir las soluciones con paréntesis:", opt: ["(3, 2), (2, 3), (-3, -2) y (-2, -3)", "(1, 6)"], ans: "(3, 2), (2, 3), (-3, -2) y (-2, -3)", show: "Final", label: "4 soluciones", exp: "Completado.", isLast: true }
+                    ]}
+                ]
+            }
         };
-        categories.forEach(c => state.mastery[c.id] = { total: 0, expert: 0 });
 
-        function goHome() {
-            document.querySelectorAll('main > div').forEach(el => el.classList.add('hidden-view'));
-            document.getElementById('view-home').classList.remove('hidden-view');
-            renderCategories();
-            updateHUD();
+        let state = { points: 0, streak: 0, history: [0], cat: null, diff: null, exIdx: 0, stepIdx: 0, isLocked: false };
+
+        function showHome() {
+            document.getElementById('screen-categories').classList.remove('hidden');
+            document.getElementById('screen-difficulty').classList.add('hidden');
+            document.getElementById('screen-game').classList.add('hidden');
+            document.getElementById('congrats-modal').classList.add('hidden');
         }
 
-        function clickCategory(id) {
-            state.category = id;
-            const cat = categories.find(c => c.id === id);
-            if(cat.needsDiff) {
-                document.getElementById('view-home').classList.add('hidden-view');
-                document.getElementById('view-diff').classList.remove('hidden-view');
-            } else {
-                startExercise('normal');
-            }
+        function showDifficulty(cat) {
+            state.cat = cat;
+            document.getElementById('screen-categories').classList.add('hidden');
+            document.getElementById('screen-difficulty').classList.remove('hidden');
         }
 
-        function startExercise(diff) {
-            state.difficulty = diff;
-            document.querySelectorAll('main > div').forEach(el => el.classList.add('hidden-view'));
-            document.getElementById('view-exercise').classList.remove('hidden-view');
-            document.getElementById('badge-diff').innerText = diff === 'normal' ? 'ESO' : diff.toUpperCase();
-            gen();
+        function initGame(diff) {
+            state.diff = diff; state.exIdx = 0; state.stepIdx = 0; state.isLocked = false;
+            document.getElementById('screen-difficulty').classList.add('hidden');
+            document.getElementById('screen-game').classList.remove('hidden');
+            document.getElementById('game-info-label').innerText = state.cat;
+            document.getElementById('blackboard-history').innerHTML = '';
+            loadExercise();
         }
 
-        function gen() {
-            const display = document.getElementById('math-problem');
-            const instruct = document.getElementById('txt-instruction');
-            const inputCont = document.getElementById('input-container');
-            const isExp = state.difficulty === 'experto';
-            state.answered = false;
-            document.getElementById('feedback-box').classList.add('hidden');
-            document.getElementById('btn-check').classList.remove('hidden');
-            document.getElementById('btn-next').classList.add('hidden');
-            document.getElementById('btn-skip').classList.remove('hidden');
-            display.innerHTML = ''; inputCont.innerHTML = '';
-            document.getElementById('txt-module').innerText = categories.find(c => c.id === state.category).title;
-            display.className = "text-center w-full math-big text-white";
-
-            switch(state.category) {
-                case 'ident':
-                    const types = ['Exacto', 'P. Puro', 'P. Mixto'];
-                    const pick = types[Math.floor(Math.random()*3)];
-                    state.currentAns = pick;
-                    if(Math.random() > 0.4) {
-                        instruct.innerText = "¿Qué tipo de decimal genera esta fracción?";
-                        let n, d;
-                        const dExacto = [2, 4, 5, 8, 10, 16, 20, 25, 40, 50, 80, 100];
-                        const dPuro = [3, 7, 9, 11, 13, 27, 33, 37, 99];
-                        const dMixto = [6, 12, 14, 15, 18, 21, 22, 24, 26, 28, 30, 44, 45, 60];
-                        let valid = false;
-                        while(!valid) {
-                            if(pick === 'Exacto') d = dExacto[Math.floor(Math.random()*dExacto.length)];
-                            else if(pick === 'P. Puro') d = dPuro[Math.floor(Math.random()*dPuro.length)];
-                            else d = dMixto[Math.floor(Math.random()*dMixto.length)];
-                            n = Math.floor(Math.random()*30)+1;
-                            if (getFractionType(n, d) === pick) valid = true;
-                        }
-                        display.innerHTML = `<div class="fraction"><span class="top">${n}</span><span class="bottom">${d}</span></div>`;
-                        state.currentHint = `Divide el numerador entre el denominador.`;
-                    } else {
-                        instruct.innerText = "¿Cómo clasificarías este número?";
-                        let tx = "";
-                        if(pick === 'Exacto') tx = (Math.random()*150).toFixed(Math.floor(Math.random()*3)+1).replace('.',',');
-                        else if(pick === 'P. Puro') {
-                            const ent = Math.floor(Math.random()*40), per = (Math.floor(Math.random()*899)+11).toString();
-                            tx = `${ent},${per}${per}${per}...`;
-                        } else {
-                            const ent = Math.floor(Math.random()*20), ante = (Math.floor(Math.random()*89)+10).toString(), per = (Math.floor(Math.random()*8)+1).toString();
-                            tx = `${ent},${ante}${per}${per}${per}${per}...`;
-                        }
-                        display.innerHTML = tx;
-                        state.currentHint = pick === 'Exacto' ? "Cifras finitas." : pick === 'P. Puro' ? "Repite tras la coma." : "Anteperíodo.";
-                    }
-                    inputCont.className = "grid grid-cols-1 gap-4";
-                    inputCont.innerHTML = types.map(t => `<button onclick="check('${t}')" class="bg-white border-4 border-slate-800 py-4 rounded-2xl font-bold hover:bg-slate-100 transition-all text-xl text-slate-800 uppercase">${t}</button>`).join('');
-                    break;
-
-                case 'sum':
-                    instruct.innerText = isExp ? "Suma y resta combinada (Sin negativos):" : "Suma y resta exacta:";
-                    if(isExp) {
-                        const count = Math.floor(Math.random() * 2) + 3; 
-                        let problemStr = ""; let resultVal = 0;
-                        for(let i=0; i<count; i++){
-                            let val = parseFloat((Math.random()*40).toFixed(Math.floor(Math.random()*3)+3));
-                            if(i === 0) resultVal = val;
-                            else {
-                                let sign = (resultVal - val >= 0) ? (Math.random() > 0.4 ? 1 : -1) : 1;
-                                if(sign === 1) resultVal += val; else resultVal -= val;
-                                problemStr += sign === 1 ? " + " : " - ";
-                            }
-                            problemStr += val.toString().replace('.',',');
-                        }
-                        state.currentAns = resultVal.toFixed(5).replace(/\.?0+$/, "");
-                        display.innerHTML = `<span class="text-2xl">${problemStr}</span>`;
-                        state.currentHint = "Cuidado con la posición de las comas.";
-                    } else {
-                        let d1 = Math.floor(Math.random()*3)+1, d2 = Math.floor(Math.random()*3)+1;
-                        let as = (Math.random()*50).toFixed(d1), bs = (Math.random()*20).toFixed(d2);
-                        let op = parseFloat(as) >= parseFloat(bs) ? (Math.random() > 0.5) : true;
-                        state.currentAns = (op ? parseFloat(as)+parseFloat(bs) : parseFloat(as)-parseFloat(bs)).toFixed(Math.max(d1, d2)).replace(/\.?0+$/, "");
-                        display.innerHTML = `${as.replace('.',',')} ${op?'+':'-'} ${bs.replace('.',',')}`;
-                        state.currentHint = "Alinea las comas.";
-                    }
-                    renderTextInput();
-                    break;
-
-                case 'mult':
-                    instruct.innerText = isExp ? "Producto de 3 factores avanzados:" : "Halla el producto:";
-                    if(isExp) {
-                        const d1 = Math.floor(Math.random()*2)+2, d2 = Math.floor(Math.random()*2)+2, d3 = Math.floor(Math.random()*2)+1;
-                        const f1 = parseFloat((Math.random()*10).toFixed(d1)), f2 = parseFloat((Math.random()*5).toFixed(d2)), f3 = parseFloat((Math.random()*4).toFixed(d3));
-                        state.currentAns = (f1 * f2 * f3).toFixed(d1+d2+d3).replace(/\.?0+$/, "");
-                        display.innerHTML = `<span class="text-3xl">${f1.toString().replace('.',',')} × ${f2.toString().replace('.',',')} × ${f3.toString().replace('.',',')}</span>`;
-                        state.currentHint = "Suma los decimales de todos los factores.";
-                    } else {
-                        const md1 = Math.floor(Math.random()*3)+1, md2 = Math.floor(Math.random()*2)+1;
-                        const am = (Math.random()*40).toFixed(md1), bm = (Math.random()*10).toFixed(md2);
-                        state.currentAns = (parseFloat(am)*parseFloat(bm)).toFixed(md1+md2).replace(/\.?0+$/, "");
-                        display.innerHTML = `${am.replace('.',',')} × ${bm.replace('.',',')}`;
-                        state.currentHint = "Multiplica y cuenta decimales.";
-                    }
-                    renderTextInput();
-                    break;
-
-                case 'comb':
-                    instruct.innerText = isExp ? "Jerarquía ESO Experto (Paréntesis complejos):" : "Jerarquía de Operaciones:";
-                    if(isExp) {
-                        const structures = [
-                            { s: "(a + b) × (c - d)", fn: (a,b,c,d) => (a+b)*(c-d) },
-                            { s: "a + (b × c) - d", fn: (a,b,c,d) => a+(b*c)-d },
-                            { s: "(a ÷ 0,5) + (b × c)", fn: (a,b,c,d) => (a/0.5)+(b*c) }
-                        ];
-                        const struct = structures[Math.floor(Math.random()*structures.length)];
-                        const c = parseFloat((Math.random()*10+5).toFixed(1)), d = parseFloat((Math.random()*4+1).toFixed(1));
-                        const a = parseFloat((Math.random()*10+5).toFixed(2)), b = parseFloat((Math.random()*5+1).toFixed(2));
-                        state.currentAns = struct.fn(a,b,c,d).toFixed(5).replace(/\.?0+$/, "");
-                        let formula = struct.s.replace('a', a.toString().replace('.',',')).replace('b', b.toString().replace('.',',')).replace('c', c.toString().replace('.',',')).replace('d', d.toString().replace('.',','));
-                        display.innerHTML = `<span class="text-3xl">${formula}</span>`;
-                        state.currentHint = "Paréntesis > Multiplicación > Suma.";
-                    } else {
-                        const ja = parseFloat((Math.random()*50 + 10).toFixed(1)), jb = parseFloat((Math.random()*10).toFixed(1));
-                        state.currentAns = (ja + jb * 2).toFixed(1).replace(/\.?0+$/, "");
-                        display.innerHTML = `${ja.toString().replace('.',',')} + ${jb.toString().replace('.',',')} × 2`;
-                    }
-                    renderTextInput();
-                    break;
-
-                case 'pot10':
-                    instruct.innerText = isExp ? "Cálculo rápido (incluye 0,001):" : "Cálculo rápido:";
-                    const baseV = (Math.random()*8000).toFixed(Math.floor(Math.random()*3)+1);
-                    const isMult = Math.random() > 0.5;
-                    let factor = isExp ? [10, 100, 1000, 0.1, 0.01, 0.001][Math.floor(Math.random()*6)] : [10, 100, 1000][Math.floor(Math.random()*3)];
-                    state.currentAns = isMult ? (parseFloat(baseV)*factor).toFixed(7).replace(/\.?0+$/, "") : (parseFloat(baseV)/factor).toFixed(7).replace(/\.?0+$/, "");
-                    display.innerHTML = `${baseV.replace('.',',')} ${isMult?'×':'÷'} ${factor.toString().replace('.',',')}`;
-                    renderTextInput();
-                    break;
-
-                case 'prob':
-                    display.className = "problem-text";
-                    instruct.innerText = isExp ? "RETO EXPERTO (Varias Operaciones):" : "Problema de Aprendiz:";
-                    
-                    const pAprendiz = [
-                        { q: "Un kilo de filetes cuesta 11,45€. Si compro 1,5 kg, ¿cuánto pago?", a: "17.175", h: "Multiplica el precio por los kilos." },
-                        { q: "Tenía 20€. He comprado un libro de 12,45€ y un estuche de 3,50€. ¿Cuánto me queda?", a: "4.05", h: "Suma los gastos y réstalo a 20." },
-                        { q: "Repartimos 15,3 litros de limonada en 6 jarras iguales. ¿Cuánto hay en cada una?", a: "2.55", h: "Divide el total entre 6." },
-                        { q: "Una cuerda mide 12,45 metros. Cortamos 3 trozos de 1,2 metros cada uno. ¿Qué queda?", a: "8.85", h: "Resta los tres trozos (3.6m) al total." }
-                    ];
-
-                    const pExperto = [
-                        { 
-                          q: "<b>PLAN DE AHORRO:</b> <br> Juan tiene 150,50€. <br> - Compra 2 juegos de 19,95€ cada uno. <br> - Recibe un regalo de 15,30€. <br> <b>¿Cuánto dinero tiene Juan ahora?</b>", 
-                          a: "125.9", 
-                          h: "Primero resta el coste de los juegos (2 x 19,95) y luego suma el regalo." 
-                        },
-                        { 
-                          q: "<b>REBAJAS DE TECNOLOGÍA:</b> <br> Un móvil cuesta 245,50€. <br> - Le aplican un descuento de 35,25€. <br> - El seguro opcional cuesta 12,40€. <br> <b>¿Cuál es el precio final si compras el móvil rebajado y el seguro?</b>", 
-                          a: "222.65", 
-                          h: "Resta el descuento al precio inicial y luego suma el coste del seguro." 
-                        },
-                        { 
-                          q: "<b>CARRERA DE ATLETISMO:</b> <br> Un circuito mide 4,25 km. <br> - Un atleta da 5 vueltas completas. <br> - Otro atleta da 3 vueltas completas. <br> <b>¿Cuántos km de diferencia hay entre los dos atletas?</b>", 
-                          a: "8.5", 
-                          h: "Calcula los km de cada uno (vueltas x 4,25) y luego resta los resultados." 
-                        },
-                        { 
-                          q: "<b>FACTURA DE SUSCRIPCIÓN:</b> <br> Una plataforma de cine cuesta 9,99€ al mes. <br> - Los 3 primeros meses son a mitad de precio. <br> - El resto del año (9 meses) es a precio normal. <br> <b>¿Cuánto pagas en total por un año completo?</b>", 
-                          a: "104.895", 
-                          h: "Calcula (3 x 4,995) + (9 x 9,99). No redondees hasta el final." 
-                        },
-                        { 
-                          q: "<b>PRESUPUESTO DE PINTURA:</b> <br> Pintar una pared de 25,5 m² cuesta 5,20€ por cada m². <br> - Además, hay que pagar 15,50€ de transporte. <br> <b>¿Cuánto cuesta en total pintar la pared?</b>", 
-                          a: "148.1", 
-                          h: "Multiplica los metros por el precio y suma el transporte." 
-                        },
-                        { 
-                          q: "<b>DESCARGA DE DATOS:</b> <br> Tienes un archivo de 500,5 MB. <br> - Descargas 12,25 MB cada minuto. <br> - Llevas descargando 20 minutos. <br> <b>¿Cuántos MB faltan por descargar?</b>", 
-                          a: "255.5", 
-                          h: "Calcula cuánto llevas (20 x 12,25) y réstalo al total del archivo." 
-                        }
-                    ];
-
-                    const pool = isExp ? pExperto : pAprendiz;
-                    const prob = pool[Math.floor(Math.random()*pool.length)];
-                    state.currentAns = prob.a;
-                    display.innerHTML = `<div class="problem-text">${prob.q}</div>`;
-                    state.currentHint = prob.h;
-                    renderTextInput();
-                    break;
-
-                case 'aprox':
-                    const trgts = ['unidades', 'décimas', 'centésimas', 'milésimas'];
-                    const target = trgts[Math.floor(Math.random()*4)], val = (Math.random()*1500).toFixed(5), isRed = Math.random() > 0.5;
-                    instruct.innerText = `${isRed?'Redondea':'Trunca'} a las ${target}:`;
-                    display.innerHTML = val.replace('.',',');
-                    let fct = target === 'unidades' ? 1 : target === 'décimas' ? 10 : target === 'centésimas' ? 100 : 1000;
-                    if(isRed) state.currentAns = (Math.round(parseFloat(val) * fct) / fct).toFixed(target==='unidades'?0:target==='décimas'?1:target==='centésimas'?2:3);
-                    else {
-                        const pts = val.split('.');
-                        if(target === 'unidades') state.currentAns = pts[0];
-                        else if(target === 'décimas') state.currentAns = pts[0] + '.' + pts[1][0];
-                        else if(target === 'centésimas') state.currentAns = pts[0] + '.' + pts[1].substring(0,2);
-                        else state.currentAns = pts[0] + '.' + pts[1].substring(0,3);
-                    }
-                    renderTextInput();
-                    break;
-
-                case 'div':
-                    instruct.innerText = "Cociente exacto:";
-                    if(!isExp) {
-                        const dvor = Math.floor(Math.random()*8)+2;
-                        let res;
-                        do {
-                            res = parseFloat(((Math.random() * 20) + 1.1).toFixed(1));
-                        } while (Number.isInteger(res));
-                        state.currentAns = res.toString();
-                        display.innerHTML = `${(res * dvor).toFixed(1).replace('.',',')} ÷ ${dvor}`;
-                    } else {
-                        const dcs = Math.floor(Math.random()*2)+1, dvor = (Math.random()*20 + 1.2).toFixed(dcs), res = Math.floor(Math.random()*400)+150;
-                        state.currentAns = res.toString();
-                        display.innerHTML = `${(res * parseFloat(dvor)).toFixed(dcs).replace('.',',')} ÷ ${dvor.replace('.',',')}`;
-                    }
-                    renderTextInput();
-                    break;
-
-                case 'repr':
-                    const s_sc = [{n:'Décimas', s:0.1, d:1}, {n:'Centésimas', s:0.01, d:2}, {n:'Milésimas', s:0.001, d:3}][Math.floor(Math.random()*3)];
-                    const s_sv = parseFloat((Math.random()*15).toFixed(s_sc.d-1)), s_pIdx = Math.floor(Math.random()*9)+1;
-                    state.currentAns = (s_sv + s_pIdx*s_sc.s).toFixed(s_sc.d);
-                    instruct.innerText = `Escala: ${s_sc.n}. Indica el valor del punto:`;
-                    let svgContent = `<svg viewBox="0 0 500 120" class="w-full overflow-visible"><line x1="20" y1="60" x2="480" y2="60" stroke="#fff" stroke-width="8" stroke-linecap="round" />`;
-                    for(let i=0; i<=10; i++) {
-                        const x = 20 + i*46, isM = i === 0 || i === 10;
-                        let lb = isM ? (i===0?s_sv:(s_sv + 10*s_sc.s).toFixed(s_sc.d)).toString().replace('.',',') : "";
-                        svgContent += `<line x1="${x}" y1="60" x2="${x}" y2="${isM?20:50}" stroke="#fff" stroke-width="${isM?8:4}" opacity="${isM?1:0.7}" />${lb?`<text x="${x}" y="105" text-anchor="middle" class="text-[14px] font-black fill-white">${lb}</text>`:''}${i===s_pIdx?`<circle cx="${x}" cy="10" r="16" fill="#facc15" stroke="#ca8a04" stroke-width="4" />`:''}`;
-                    }
-                    svgContent += `</svg>`;
-                    display.innerHTML = svgContent;
-                    renderTextInput();
-                    break;
-            }
-        }
-
-        function renderTextInput() {
-            document.getElementById('input-container').innerHTML = `<input type="text" id="main-input" placeholder="Tu respuesta..." autocomplete="off" class="w-full text-center text-3xl md:text-5xl font-black py-8 bg-white/5 border-b-4 border-white outline-none focus:bg-white/10 transition-all text-white placeholder-white/20">`;
-            setTimeout(() => { const mi = document.getElementById('main-input'); if(mi) mi.focus(); }, 100);
-        }
-
-        function check(manual = null) {
-            if(state.answered) return;
-            const inputEl = document.getElementById('main-input');
-            const val = (manual !== null) ? manual : (inputEl ? inputEl.value : null);
-            if(!val) return;
-            const isOk = (parseFloat(val.toString().replace(',','.')) === parseFloat(state.currentAns.toString().replace(',','.'))) || (val.toLowerCase().trim() === state.currentAns.toString().toLowerCase().trim());
-            state.answered = true;
-            document.getElementById('btn-check').classList.add('hidden');
-            document.getElementById('btn-skip').classList.add('hidden');
-            const fb = document.getElementById('feedback-box');
-            fb.classList.remove('hidden');
+        function formatMath(text) {
+            let res = text.replace(/√\(([^)]+)\)/g, '<span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-content">$1</span></span>')
+                          .replace(/√(\w)/g, '<span class="sqrt"><span class="sqrt-symbol">√</span><span class="sqrt-content">$1</span></span>');
             
-            if(isOk) {
-                fb.innerHTML = `<div class="font-black text-xl mb-1 uppercase tracking-widest text-emerald-300">¡CORRECTO!</div>`;
-                fb.className = "mt-8 p-6 border-8 border-emerald-400 bg-emerald-950/40 text-emerald-100 rounded-[2rem] text-center";
-                
-                let pointsToAdd;
-                if (['ident', 'repr', 'aprox'].includes(state.category)) pointsToAdd = 0.5;
-                else pointsToAdd = state.difficulty === 'experto' ? 2 : 1;
-                
-                state.mastery[state.category].total = Math.min(state.mastery[state.category].total + pointsToAdd, POINTS_GOAL);
-                if(state.difficulty === 'experto') {
-                    state.mastery[state.category].expert += pointsToAdd;
-                }
-                
-                state.streak++;
-                setTimeout(nextExercise, 1200);
-            } else {
-                fb.innerHTML = `<div class="font-black text-xl mb-1 uppercase tracking-widest text-rose-300">ERROR</div><div class="text-sm font-bold mb-3 uppercase">Era: ${state.currentAns.toString().replace('.',',')}</div><div class="text-[10px] font-bold bg-white/10 p-2 rounded-lg italic">${state.currentHint || ""}</div>`;
-                fb.className = "mt-8 p-6 border-8 border-rose-400 bg-rose-950/40 text-rose-100 rounded-[2rem] text-center";
-                state.streak = 0;
-                document.getElementById('btn-next').classList.remove('hidden');
-            }
-            updateHUD();
-        }
-
-        function nextExercise() { gen(); }
-        function resetProgress() { categories.forEach(c => state.mastery[c.id] = { total: 0, expert: 0 }); state.streak = 0; goHome(); }
-
-        function updateHUD() {
-            const values = Object.values(state.mastery);
-            const totalScore = values.reduce((a,b) => a + b.total, 0);
-            const totalPossible = categories.length * POINTS_GOAL;
-            document.getElementById('mastery-fill').style.width = `${(totalScore / totalPossible) * 100}%`;
-            document.getElementById('streak-count').innerText = state.streak;
-            
-            const rNames = ["Novato", "Aventajado", "Genio", "Maestro", "Leyenda"];
-            document.getElementById('rank-name').innerText = rNames[Math.min(Math.floor(totalScore / 18), 4)];
-            
-            const allComplete = categories.every(c => {
-                const m = state.mastery[c.id];
-                return m.total >= POINTS_GOAL && (!c.needsDiff || m.expert >= EXPERT_GOAL);
+            res = res.replace(/\{([^;]+);([^}]+)\}/g, (match, p1, p2) => {
+                return `<div class="mini-system"><span class="mini-bracket">{</span><div class="mini-equations"><span>${p1.trim()}</span><span>${p2.trim()}</span></div></div>`;
             });
+            return res;
+        }
 
-            if(allComplete) {
-                document.getElementById('rank-icon').innerText = "🏅";
-                document.getElementById('btn-claim-diploma').classList.remove('hidden-view');
-                document.getElementById('btn-reset').classList.remove('hidden');
-            } else {
-                document.getElementById('rank-icon').innerText = "🌱";
-                document.getElementById('btn-claim-diploma').classList.add('hidden-view');
+        function loadExercise() {
+            if (!DATABASE[state.cat] || !DATABASE[state.cat][state.diff]) {
+                showHome();
+                return;
             }
+            const dataRoot = DATABASE[state.cat][state.diff];
+            const ex = dataRoot[state.exIdx];
+            if(!ex) {
+                showHome();
+                return;
+            }
+            document.getElementById('equation-lines').innerHTML = ex.system.map(l => `<div>${formatMath(l)}</div>`).join('');
+            document.getElementById('feedback-ui').classList.add('hidden');
+            document.getElementById('btn-next-step').classList.add('hidden');
+            document.getElementById('congrats-modal').classList.add('hidden');
+            
+            const step = ex.steps[state.stepIdx];
+            document.getElementById('instruction-text').innerText = step.q;
+            renderOptions(step.opt, step.ans);
+            state.isLocked = false;
         }
 
-        function renderCategories() {
-            document.getElementById('grid-categories').innerHTML = categories.map(c => {
-                const m = state.mastery[c.id];
-                const perc = Math.min((m.total / POINTS_GOAL) * 100, 100);
-                const hasExpertGoal = !c.needsDiff || m.expert >= EXPERT_GOAL;
-                const expertBadge = c.needsDiff ? (m.expert >= EXPERT_GOAL ? '🥇' : (m.expert > 0 ? '🥈' : '')) : '';
-                
-                return `
-                <div onclick="clickCategory('${c.id}')" class="minimal-card p-10 cursor-pointer flex flex-col items-center group ${c.color} shadow-sm">
-                    <div class="expert-badge">${expertBadge}</div>
-                    <div class="text-7xl mb-4 group-hover:rotate-12 transition-transform duration-300">
-                        ${(m.total >= POINTS_GOAL && hasExpertGoal) ? '✅' : (c.id === 'ident' ? '🏷️' : c.id === 'repr' ? '📏' : c.id === 'aprox' ? '🎯' : c.id === 'sum' ? '➕' : c.id === 'mult' ? '✖️' : c.id === 'div' ? '➗' : c.id === 'pot10' ? '🚀' : c.id === 'comb' ? '🧩' : '🏫')}
-                    </div>
-                    <h3 class="font-black text-[10px] uppercase tracking-widest text-slate-800 mb-2">${c.title}</h3>
-                    <div class="w-full bg-slate-200 h-2 rounded-full mt-2 overflow-hidden">
-                        <div class="bg-indigo-500 h-full transition-all duration-500" style="width: ${perc}%"></div>
-                    </div>
-                    <span class="text-[9px] font-bold text-slate-400 mt-2 uppercase">${m.total} / ${POINTS_GOAL} PTOS ${c.needsDiff ? `(${m.expert}/${EXPERT_GOAL} EXP)` : ''}</span>
-                </div>`}).join('');
-        }
-
-        function openNameModal() { document.getElementById('modal-name').classList.remove('hidden-view'); }
-        function generateDiploma() {
-            const name = document.getElementById('user-name-input').value.trim();
-            if(!name) return;
-            document.getElementById('diploma-name-text').innerText = name.toUpperCase();
-            document.getElementById('diploma-special-message').innerText = `¡Enhorabuena, ${name}! Has demostrado un talento excepcional. Ya estás totalmente preparado/a para el examen y te has convertido en un auténtico supermatemático/a.`;
-            document.getElementById('modal-name').classList.add('hidden-view');
-            document.querySelectorAll('main > div').forEach(el => el.classList.add('hidden-view'));
-            document.getElementById('view-diploma').classList.remove('hidden-view');
-        }
-
-        document.addEventListener('keypress', (e) => {
-            if(e.key === 'Enter') {
-                if(!state.answered) { 
-                    if(document.getElementById('main-input')) check(); 
-                    if(document.getElementById('user-name-input').offsetParent) generateDiploma(); 
+        function renderOptions(opts, correctVal) {
+            const container = document.getElementById('game-options');
+            container.innerHTML = '';
+            let displayOpts = [...opts];
+            
+            // Si es racionales y el primer paso, nos aseguramos de que el método m.c.m esté presente
+            if (state.stepIdx === 0) {
+                if (state.cat === 'racionales') {
+                    displayOpts = ["Sustitución", "Igualación", "m.c.m. para quitar denominadores"];
+                } else {
+                    displayOpts = ["Sustitución", "Igualación", "Reducción"];
                 }
-                else if(state.streak === 0) nextExercise();
             }
-        });
-        window.onload = goHome;
+
+            displayOpts.sort(() => Math.random() - 0.5).forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "p-4 text-left border-2 border-slate-200 rounded-2xl font-bold text-slate-700 bg-white transition-all hover:border-indigo-500 hover:bg-slate-50 active:scale-[0.98] shadow-sm text-sm";
+                btn.innerText = opt;
+                btn.onclick = (e) => handleChoice(e, opt, correctVal);
+                container.appendChild(btn);
+            });
+        }
+
+        function handleChoice(e, selectedText, correctVal) {
+            if(state.isLocked) return;
+            state.isLocked = true;
+            const btnRef = e.currentTarget;
+            let isCorrect = false;
+            if (Array.isArray(correctVal)) {
+                isCorrect = correctVal.some(v => selectedText === v || selectedText.includes(v));
+            } else {
+                isCorrect = selectedText === correctVal;
+            }
+            const feedbackUi = document.getElementById('feedback-ui');
+            const feedbackMsg = document.getElementById('feedback-msg');
+            const nextBtn = document.getElementById('btn-next-step');
+            if(isCorrect) {
+                btnRef.classList.add('btn-correct');
+                state.streak++;
+                const ex = DATABASE[state.cat][state.diff][state.exIdx];
+                const step = ex.steps[state.stepIdx];
+                feedbackUi.className = "mt-6 p-6 rounded-2xl border-l-[8px] bg-emerald-50 border-emerald-500 text-emerald-900";
+                feedbackMsg.innerHTML = step.exp;
+                addToBlackboard(`✔ ${step.show}: <b>${formatMath(step.label)}</b>`);
+                if(step.isLast) document.getElementById('congrats-modal').classList.remove('hidden');
+                else nextBtn.classList.remove('hidden');
+            } else {
+                state.streak = 0;
+                btnRef.classList.add('btn-wrong');
+                feedbackUi.className = "mt-6 p-6 rounded-2xl border-l-[8px] bg-red-50 border-red-500 text-red-900";
+                feedbackMsg.innerHTML = "Lógica incorrecta. Revisa el procedimiento algebraico.";
+                setTimeout(() => { 
+                    state.isLocked = false; 
+                    btnRef.classList.remove('btn-wrong'); 
+                }, 1000);
+            }
+            feedbackUi.classList.remove('hidden');
+            updateStats();
+        }
+
+        function skipExercise() {
+            state.exIdx++; state.stepIdx = 0;
+            document.getElementById('blackboard-history').innerHTML = '';
+            loadExercise();
+        }
+
+        function processNext(fromCongrats = false) {
+            if(fromCongrats) {
+                state.points += 100;
+                state.exIdx++; state.stepIdx = 0;
+                document.getElementById('blackboard-history').innerHTML = '';
+            } else {
+                state.stepIdx++;
+            }
+            updateStats();
+            loadExercise();
+        }
+
+        function addToBlackboard(msg) {
+            const board = document.getElementById('blackboard-history');
+            const div = document.createElement('div');
+            div.className = "step-entry";
+            div.innerHTML = msg;
+            board.appendChild(div);
+            const logContainer = document.getElementById('log-container');
+            logContainer.scrollTo({ top: logContainer.scrollHeight, behavior: 'smooth' });
+        }
+
+        function updateStats() {
+            document.getElementById('ui-points').innerText = state.points;
+            document.getElementById('ui-streak').innerText = `${state.streak} 🔥`;
+            state.history.push(state.points);
+            drawProgress();
+        }
+
+        function drawProgress() {
+            const canvas = document.getElementById('progressCanvas');
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width = canvas.offsetWidth;
+            const h = canvas.height = canvas.offsetHeight;
+            ctx.clearRect(0,0,w,h);
+            const pts = state.history.slice(-15);
+            const max = Math.max(...pts, 100);
+            const step = w / (pts.length - 1 || 1);
+            ctx.beginPath(); ctx.strokeStyle = '#6366f1'; ctx.lineWidth = 3;
+            pts.forEach((p, i) => {
+                const x = i * step; const y = h - (p / max * (h - 30)) - 15;
+                if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+            });
+            ctx.stroke();
+            ctx.fillStyle = 'rgba(99, 102, 241, 0.05)';
+            ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.fill();
+        }
+
+        window.onload = drawProgress;
     </script>
 </body>
 </html>
